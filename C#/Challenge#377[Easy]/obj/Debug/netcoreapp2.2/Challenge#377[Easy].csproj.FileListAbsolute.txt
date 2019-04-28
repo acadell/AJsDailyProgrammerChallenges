@@ -1,0 +1,11 @@
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\bin\Debug\netcoreapp2.2\Challenge#377[Easy].deps.json
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\bin\Debug\netcoreapp2.2\Challenge#377[Easy].runtimeconfig.json
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\bin\Debug\netcoreapp2.2\Challenge#377[Easy].runtimeconfig.dev.json
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\bin\Debug\netcoreapp2.2\Challenge#377[Easy].dll
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\bin\Debug\netcoreapp2.2\Challenge#377[Easy].pdb
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].csprojAssemblyReference.cache
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].csproj.CoreCompileInputs.cache
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].AssemblyInfoInputs.cache
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].AssemblyInfo.cs
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].dll
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].pdb
