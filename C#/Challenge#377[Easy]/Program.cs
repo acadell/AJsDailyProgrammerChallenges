@@ -24,10 +24,11 @@ namespace Challenge_377_Easy_
             Console.WriteLine(challenge.fit2(5, 100, 6, 1));
             Console.WriteLine(challenge.fit2(5, 5, 6, 1));
 
-            challenge.printFit3();
-
-
-
+            Console.WriteLine("\nTest fit3");
+            Console.WriteLine(challenge.fit3(10, 10, 10, 1, 1, 1));
+            Console.WriteLine(challenge.fit3(12, 34, 56, 7, 8, 9));
+            Console.WriteLine(challenge.fit3(123, 456, 789, 10, 11, 12));
+            Console.WriteLine(challenge.fit3(1234567, 89101112, 13141516, 171819, 202122, 232425));
         }
     }
 
@@ -55,14 +56,7 @@ namespace Challenge_377_Easy_
             highest = highest > standing ? highest : standing;
             return highest;
         }
- 
-        public void printFit3()
-        {
-            Console.WriteLine("\nTest fit3");
-            Console.WriteLine(fit3(10, 10, 10, 1, 1, 1));
-            Console.WriteLine(fit3(12, 34, 56, 7, 8, 9));
-            Console.WriteLine(fit3(123, 456, 789, 10, 11, 12));
-            Console.WriteLine(fit3(1234567, 89101112, 13141516, 171819, 202122, 232425));
-        }
+
+
     }
 }
