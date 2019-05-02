@@ -34,29 +34,33 @@ namespace Challenge_377_Easy_
 
     class Challenge_377
     {
-        public int fit1(int containerX, int ContainerY, int boxX, int boxY)
+        public int fit1(int containerX, int containerY, int boxX, int boxY)
         {
-            return (containerX/boxX) * (ContainerY/boxY);
+            return (containerX/boxX) * (containerY/boxY);
         }
 
-        public int fit2(int containerX, int ContainerY, int boxX, int boxY)
+        public int fit2(int containerX, int containerY, int boxX, int boxY)
         {
-            int yAxis = fit1(containerX, ContainerY, boxY, boxX);
-            int xAxis = fit1(containerX, ContainerY, boxX, boxY);
+            int yAxis = fit1(containerX, containerY, boxY, boxX);
+            int xAxis = fit1(containerX, containerY, boxX, boxY);
             return xAxis > yAxis ? xAxis : yAxis;
         }
 
-        public int fit3(int containerX, int ContainerY, int ContainerZ, int boxX, int boxY, int boxZ)
+        public int fit3(int containerX, int containerY, int ContainerZ, int boxX, int boxY, int boxZ)
         {
-            int flat = fit2(containerX, ContainerY, boxX, boxY) * (ContainerZ/boxZ);
-            int sideways = fit2(containerX, ContainerY, boxZ, boxY) * (ContainerZ/boxX);
-            int standing = fit2(containerX, ContainerY, boxX, boxZ) * (ContainerZ/boxY);
+            int flat = fit2(containerX, containerY, boxX, boxY) * (ContainerZ/boxZ);
+            int sideways = fit2(containerX, containerY, boxZ, boxY) * (ContainerZ/boxX);
+            int standing = fit2(containerX, containerY, boxX, boxZ) * (ContainerZ/boxY);
 
             int highest = flat > sideways ? flat : sideways;
             highest = highest > standing ? highest : standing;
             return highest;
         }
-
+        public int fitn(int[] container, int[] box)
+        {
+            //Gotta do this part
+            return 0;
+        }
 
     }
 }
