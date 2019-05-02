@@ -29,6 +29,20 @@ namespace Challenge_377_Easy_
             Console.WriteLine(challenge.fit3(12, 34, 56, 7, 8, 9));
             Console.WriteLine(challenge.fit3(123, 456, 789, 10, 11, 12));
             Console.WriteLine(challenge.fit3(1234567, 89101112, 13141516, 171819, 202122, 232425));
+
+            Console.WriteLine("\nTest fitn");
+            int[] container = {123, 456, 789}; //{123, 456, 789, 1011, 1213, 1415};
+            int[] box = {10, 11, 12};//{16, 17, 18, 19, 20, 21};
+            Console.WriteLine(challenge.fitn(container, box));
+
+            container = new int[] {123, 456, 789, 1011, 1213, 1415};
+            box = new int[] {16, 17, 18, 19, 20, 21};
+            Console.WriteLine(challenge.fitn(container, box));
+
+            //This test produces a number that is too large
+            container = new int[] {180598, 125683, 146932, 158296, 171997, 204683, 193694, 216231, 177673, 169317, 216456, 220003, 165939, 205613, 152779, 177216, 128838, 126894, 210076, 148407};
+            box = new int[] {1984, 2122, 1760, 2059, 1278, 2017, 1443, 2223, 2169, 1502, 1274, 1740, 1740, 1768, 1295, 1916, 2249, 2036, 1886, 2010};
+            Console.WriteLine(challenge.fitn(container, box));
         }
     }
 
@@ -58,9 +72,30 @@ namespace Challenge_377_Easy_
         }
         public int fitn(int[] container, int[] box)
         {
-            //Gotta do this part
-            return 0;
+            int total = 1;
+            int highest = 0;
+
+            Array.Sort(container);
+            Array.Sort(box);
+
+            int count = 0;
+            for(int offset = 0; offset < container.Length; offset++)
+            {
+                total = 1;
+                for(int i = 0; i < container.Length; i++)
+                {
+                    total *= (container[i]/box[(i + offset) % container.Length]);
+                    count++;
+                }
+                Console.WriteLine("Total: " + total + "Offset: " + offset);
+                if(total > highest)
+                    highest = total;
+            }
+            Console.WriteLine("Count: " + count);
+            return highest;
         }
+
+
 
     }
 }
