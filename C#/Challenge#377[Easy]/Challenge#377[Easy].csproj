@@ -6,4 +6,8 @@
     <RootNamespace>Challenge_377_Easy_</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Accord.Math" Version="3.8.2-alpha" />
+  </ItemGroup>
+
 </Project>

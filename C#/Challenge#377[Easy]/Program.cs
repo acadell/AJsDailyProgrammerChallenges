@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Numerics;
+using Accord;
+using Accord.Math.Optimization;
 
 namespace Challenge_377_Easy_
 {
@@ -33,16 +36,16 @@ namespace Challenge_377_Easy_
             Console.WriteLine("\nTest fitn");
             int[] container = {123, 456, 789}; //{123, 456, 789, 1011, 1213, 1415};
             int[] box = {10, 11, 12};//{16, 17, 18, 19, 20, 21};
-            Console.WriteLine(challenge.fitn(container, box));
+            Console.WriteLine(challenge.fitnRecursive(container, box));
 
             container = new int[] {123, 456, 789, 1011, 1213, 1415};
             box = new int[] {16, 17, 18, 19, 20, 21};
-            Console.WriteLine(challenge.fitn(container, box));
+            Console.WriteLine(challenge.fitnRecursive(container, box) + " => \n1883443968\n");
 
             //This test produces a number that is too large
             container = new int[] {180598, 125683, 146932, 158296, 171997, 204683, 193694, 216231, 177673, 169317, 216456, 220003, 165939, 205613, 152779, 177216, 128838, 126894, 210076, 148407};
             box = new int[] {1984, 2122, 1760, 2059, 1278, 2017, 1443, 2223, 2169, 1502, 1274, 1740, 1740, 1768, 1295, 1916, 2249, 2036, 1886, 2010};
-            Console.WriteLine(challenge.fitn(container, box));
+            Console.WriteLine(challenge.fitnRecursive(container, box) + " => \n4281855455197643306306491981973422080000\n");
         }
     }
 
@@ -62,40 +65,91 @@ namespace Challenge_377_Easy_
 
         public int fit3(int containerX, int containerY, int ContainerZ, int boxX, int boxY, int boxZ)
         {
-            int flat = fit2(containerX, containerY, boxX, boxY) * (ContainerZ/boxZ);
+            int flat = fit2(containerX, containerY, boxX, boxY) * (ContainerZ/boxZ); 
             int sideways = fit2(containerX, containerY, boxZ, boxY) * (ContainerZ/boxX);
             int standing = fit2(containerX, containerY, boxX, boxZ) * (ContainerZ/boxY);
-
+            
+            Console.Write(boxX + " ");
+            
             int highest = flat > sideways ? flat : sideways;
             highest = highest > standing ? highest : standing;
             return highest;
         }
-        public int fitn(int[] container, int[] box)
+
+
+         public BigInteger fitnRecursive(int[] container, int[] box)
         {
-            int total = 1;
-            int highest = 0;
+            //Console.WriteLine(box[0]);
+            //comes down to container.length choose container.length-1
+            BigInteger highest = 0;
+            int depth = box.Length - container.Length;
 
-            Array.Sort(container);
-            Array.Sort(box);
-
-            int count = 0;
-            for(int offset = 0; offset < container.Length; offset++)
+            if(container.Length == 1)//base
             {
-                total = 1;
-                for(int i = 0; i < container.Length; i++)
-                {
-                    total *= (container[i]/box[(i + offset) % container.Length]);
-                    count++;
-                }
-                Console.WriteLine("Total: " + total + "Offset: " + offset);
-                if(total > highest)
-                    highest = total;
+                highest = container[0]/box[depth];
+                //Console.Write("   " + container[0] +" / " + box[depth] + "\n");
+               
             }
-            Console.WriteLine("Count: " + count);
+            else    //recurse
+            {   
+                Console.Write("Recurse ");
+                //int[] tempBoxes = new int[box.Length-1];
+                int[] tempContainers = new int[container.Length-1];
+                //Array.Copy(box, 1, tempBoxes, 0, tempBoxes.Length);
+                Array.Copy(container, 1, tempContainers, 0, tempContainers.Length);
+                
+                for(int i = depth; i < box.Length; i++)
+                {
+                    int swap = box[depth];
+                    box[depth] = box[i];
+                    box[i] = swap;
+                    
+                    //Console.WriteLine(container[0] + " / ");
+                    BigInteger temp = fitnRecursive(tempContainers, box) * (container[0] / box[depth]);
+                   
+                    swap = box[depth];
+                    box[depth] = box[i];
+                    box[i] = swap;
+
+                    highest = temp > highest ? temp : highest;
+                }
+                //Console.WriteLine(highest);
+            }
             return highest;
         }
 
+//WIP solve using the hungarian problem
+        // public BigInteger fitn(int[] container, int[] box)
+        // {
+        //     double[,] hungarianGrid = new double[container.Length , box.Length];
+        //     //set the minimum value to any value in the grid
+        //     double minimumValue = container[0] % box[0]; 
 
+        //     for(int y = 0; y < container.Length; y++)
+        //     {
+        //         for(int x = 0; x < box.Length; x++)
+        //         {
+        //             hungarianGrid[x, y] = container[x] % box[y];
+                    
+        //             if(minimumValue > hungarianGrid[x, y])
+        //             {
+        //                 minimumValue = hungarianGrid[x, y];
+        //             }
+        //             Console.Write(hungarianGrid[x, y] + " ");
+        //         }
+        //         Console.WriteLine();
+        //     }
+        //     Console.WriteLine(minimumValue);
+        //     //row reduction
+        //     Munkres munkresSolution = new Munkres(hungarianGrid);
+        //     munkresSolution.Minimize();
+        //     int[] values = munkresSolution.Solution;
+        //     foreach( int i in values)
+        //         Console.WriteLine(i + " ");
 
+        //     return 0;
+        // }
     }
 }
+
+

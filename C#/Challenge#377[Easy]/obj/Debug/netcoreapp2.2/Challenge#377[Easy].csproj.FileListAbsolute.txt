@@ -9,3 +9,4 @@ C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challen
 C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].AssemblyInfo.cs
 C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].dll
 C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\obj\Debug\netcoreapp2.2\Challenge#377[Easy].pdb
+C:\Users\harly\Documents\DailyProgrammer\AJsDailyProgrammerChallenges\C#\Challenge#377[Easy]\bin\Debug\netcoreapp2.2\Accord.dll.config
