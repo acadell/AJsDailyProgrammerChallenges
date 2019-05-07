@@ -36,17 +36,17 @@ namespace Challenge_377_Easy_
             Console.WriteLine("\nTest fitn");
             int[] container = {123, 456, 789}; //{123, 456, 789, 1011, 1213, 1415};
             int[] box = {10, 11, 12};//{16, 17, 18, 19, 20, 21};
-            Console.WriteLine(challenge.fitnRecursive(container, box));
+            Console.WriteLine(challenge.fitn(container, box) + " => \n32604");
 
-            container = new int[] {123, 456, 789, 1011, 1213, 1415};
-            box = new int[] {16, 17, 18, 19, 20, 21};
-            Console.WriteLine(challenge.fitnRecursive(container, box) + " => \n1883443968\n");
+            //  container = new int[] {123, 456, 789, 1011, 1213, 1415};
+            //  box = new int[] {16, 17, 18, 19, 20, 21};
+            //  Console.WriteLine(challenge.fitn(container, box) + " => \n1883443968\n");
 
-            //This test produces a number that is too large
-            container = new int[] {180598, 125683, 146932, 158296, 171997, 204683, 193694, 216231, 177673, 169317, 216456, 220003, 165939, 205613, 152779, 177216, 128838, 126894, 210076, 148407};
-            box = new int[] {1984, 2122, 1760, 2059, 1278, 2017, 1443, 2223, 2169, 1502, 1274, 1740, 1740, 1768, 1295, 1916, 2249, 2036, 1886, 2010};
-            Console.WriteLine(challenge.fitnRecursive(container, box) + " => \n4281855455197643306306491981973422080000\n");
-        }
+            // //This test produces a number that is too large
+            // container = new int[] {180598, 125683, 146932, 158296, 171997, 204683, 193694, 216231, 177673, 169317, 216456, 220003, 165939, 205613, 152779, 177216, 128838, 126894, 210076, 148407};
+            // box = new int[] {1984, 2122, 1760, 2059, 1278, 2017, 1443, 2223, 2169, 1502, 1274, 1740, 1740, 1768, 1295, 1916, 2249, 2036, 1886, 2010};
+            // Console.WriteLine(challenge.fitn(container, box) + " => \n4281855455197643306306491981973422080000\n");
+         }
     }
 
     class Challenge_377
@@ -119,37 +119,56 @@ namespace Challenge_377_Easy_
         }
 
 //WIP solve using the hungarian problem
-        // public BigInteger fitn(int[] container, int[] box)
-        // {
-        //     double[,] hungarianGrid = new double[container.Length , box.Length];
-        //     //set the minimum value to any value in the grid
-        //     double minimumValue = container[0] % box[0]; 
+        public BigInteger fitn(int[] container, int[] box)
+        {
+            double[][] hungarianGrid = new double[container.Length][];
 
-        //     for(int y = 0; y < container.Length; y++)
-        //     {
-        //         for(int x = 0; x < box.Length; x++)
-        //         {
-        //             hungarianGrid[x, y] = container[x] % box[y];
+
+            for(int i = 0; i < box.Length; i++)
+            {
+                hungarianGrid[i] = new double[box.Length];
+            }
+
+            for(int y = 0; y < container.Length; y++)
+            {
+
+                for(int x = 0; x < box.Length; x++)
+                {
+                    //Console.Write(container[x]);
+                    hungarianGrid[x][y] = container[x] % box[y];
+
+                    Console.Write(hungarianGrid[x][y] + " ");
+                }
+                Console.WriteLine();
+            }
+            //row reduction
+            Munkres munkresSolution = new Munkres(hungarianGrid);
+            munkresSolution.Minimize();
+            
+            for(int y = 0; y < container.Length; y++)
+            {
+
+                for(int x = 0; x < box.Length; x++)
+                {
+                    //Console.Write(container[x]);
                     
-        //             if(minimumValue > hungarianGrid[x, y])
-        //             {
-        //                 minimumValue = hungarianGrid[x, y];
-        //             }
-        //             Console.Write(hungarianGrid[x, y] + " ");
-        //         }
-        //         Console.WriteLine();
-        //     }
-        //     Console.WriteLine(minimumValue);
-        //     //row reduction
-        //     Munkres munkresSolution = new Munkres(hungarianGrid);
-        //     munkresSolution.Minimize();
-        //     int[] values = munkresSolution.Solution;
-        //     foreach( int i in values)
-        //         Console.WriteLine(i + " ");
 
-        //     return 0;
-        // }
+                    Console.Write(hungarianGrid[x][y] + " ");
+                }
+                Console.WriteLine();
+            }
+            double[] values = munkresSolution.Solution;
+            foreach( int i in values)
+               Console.WriteLine(i + " ");
+
+            BigInteger answer = 1;
+            for(int i = 0; i < container.Length; i++)
+            {
+                Console.WriteLine("Container: " + container[i] + " Box: " + box[(int)values[i]] + "Answer: " + (container[i]/box[(int)values[i]]));
+                answer *= (container[i]/box[(int)values[i]]);
+            }
+
+            return answer;
+        }
     }
 }
-
-
